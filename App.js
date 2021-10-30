@@ -2,9 +2,10 @@ import 'react-native-gesture-handler';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import * as React from 'react';
+import { Provider } from 'react-redux';
+import {store, persistor} from './src/store';
+import { PersistGate } from 'redux-persist/integration/react';
 
-//import useCachedResources from './hooks/useCachedResources';
-//import useDatabase from './hooks/useDatabase'
 
 //screens                        
 import  InitialScreen   from './src/Cadastro/InitialScreen'; 
@@ -44,13 +45,18 @@ export default function App(propos){
   //  SplashScreen.hideAsync();
 
     return(
+      <Provider store={store}>
+        <PersistGate loading={null} persistor={persistor}>
       <NavigationContainer>
         <Stack.Navigator initialRouteName="HomeScreen" >
           <Stack.Screen name="HomeScreen" component={HomeScreen} options={{
                   title: "",
                   headerShown: true,
                 }}/>
-          <Stack.Screen name="InitialScreen" component={InitialScreen}/>
+          <Stack.Screen name="InitialScreen" component={InitialScreen} options={{
+                  title: "",
+                  headerShown: true,
+                }}/>
           <Stack.Screen name="FirstQuestion" component={FirstQuestion}/>
           <Stack.Screen name="SecondQuestion" component={SecondQuestion}/>
           <Stack.Screen name="ThirdQuestion" component={ThirdQuestion}/>
@@ -71,6 +77,8 @@ export default function App(propos){
           <Stack.Screen name="ListaPorEnsino" component={ListaPorEnsino}/>
         </Stack.Navigator>
       </NavigationContainer>
+      </PersistGate>
+      </Provider>
     )
     //add
  // } else {

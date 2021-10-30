@@ -1,34 +1,42 @@
 //import * as React from 'react';
 import { View, Alert, Modal,KeyboardAvoidingView, Image, TextInput, TouchableOpacity, Text,StyleSheet, Animated,Keyboard, Button, ImageBackground } from 'react-native';
-import React, {Component} from 'react';
-import { TouchableHighlight } from 'react-native-gesture-handler';
+import React, {useEffect, useState} from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Creators as PerguntasActions } from '../store/ducks/perguntas';
 
+const PerguntaDois = ({navigation}) => {
+    const [modalVisible, setModalVisible] = useState(false);
+    const [modalVisibleWrong, setModalVisibleWrong] = useState(false);
+    const dispatch = useDispatch()
 
+    const respondidoState = useSelector((store) => store.perguntas.respondido); 
 
-export default class SecondQuestion extends React.Component {
-    //const imageCorrect = require('...')
-    //const imageCorrect = require('...')
-    state = {
-        modalVisible: false,
-        modalVisibleWrong: false
-    };
-    setModalVisible = (visible) => {
-        this.setState({ modalVisible: visible });
+    useEffect(() => {
+        if (respondidoState == 2) {
+            Alert.alert(
+                "Pergunta já respondida!",
+                "Siga para a próxima pergunta",
+                [
+                  { text: "OK", onPress: () => navigation.navigate('ThirdQuestion') }
+                ]
+              );
+        }
+    },[])
+
+    const respostaCerta = () => {
+        dispatch(PerguntasActions.salvarAcertos(2));
+        dispatch(PerguntasActions.salvarRespondidos(2));
+        setModalVisible(!modalVisible);        
+        navigation.navigate('ThirdQuestion');      
     }
-    setModalVisibleWrong = (visible) => {
-        this.setState({ modalVisibleWrong: visible });
+
+    const respostaErrada = () => {
+        dispatch(PerguntasActions.salvarRespondidos(2));
+        setModalVisible(!modalVisible);
+        navigation.navigate('ThirdQuestion');
     }
-    
-    render(){
-    const  { navigation } = this.props;
-    console.log(this.props.route)
-    const contadorAcertos = this.props.route.params.contadorAcertos;//navigation.getParam('contadorAcertos', 'NO');
-    console.log("Contador", contadorAcertos);
-    console.log("Contador", contadorAcertos);
-    const { modalVisible } = this.state;
-    const { modalVisibleWrong } = this.state;
-    
-       return(
+
+    return(
         
         <View  style={styles.background}>
             <View>
@@ -38,24 +46,24 @@ export default class SecondQuestion extends React.Component {
             </View>
             
             <View style ={styles.backView}>
-                <TouchableOpacity style = {styles.backgroundTouchableOpacity} onPress={() => {this.setModalVisible(true);}}>
+                <TouchableOpacity style = {styles.backgroundTouchableOpacity} onPress={() => setModalVisible(true)}>
                     <Image source={require('../../assets/dentista.png')}
                         style={{ width: 130, height: 130}}/> 
                         
                 </TouchableOpacity>
 
-                <TouchableOpacity style = {styles.backgroundTouchableOpacity2} onPress={() => {this.setModalVisibleWrong(true);}}>
+                <TouchableOpacity style = {styles.backgroundTouchableOpacity2} onPress={() => setModalVisibleWrong(true)}>
                     <Image source={require('../../assets/eletricista.png')}
                         style={{ width: 130, height: 130 }}/> 
                 </TouchableOpacity>
             </View>
             <View style ={styles.backView2}>
-                <TouchableOpacity style = {styles.backgroundTouchableOpacity} onPress={() => {this.setModalVisibleWrong(true);}}>
+                <TouchableOpacity style = {styles.backgroundTouchableOpacity} onPress={() => setModalVisibleWrong(true)}>
                     <Image source={require('../../assets/policial.png')}
                         style={{ width: 130, height: 130}}/> 
                 </TouchableOpacity>
 
-                <TouchableOpacity style = {styles.backgroundTouchableOpacity2} onPress={() => {this.setModalVisibleWrong(true);}}>
+                <TouchableOpacity style = {styles.backgroundTouchableOpacity2} onPress={() => setModalVisibleWrong(true)}>
                     <Image source={require('../../assets/professor.png')}
                         style={{ width: 130, height: 130 }}/> 
                 </TouchableOpacity>
@@ -71,7 +79,7 @@ export default class SecondQuestion extends React.Component {
                     <View style={styles.modalView}>
                         <Image source={require('../../assets/dentinhoFeliz.png')} style={styles.imageModal} /> 
                         <Text style={styles.modalText}>Acertou, jovem!</Text>
-                                 <TouchableOpacity style={{ ...styles.openButton, backgroundColor: "#2196F3" }} onPress={()=>{navigation.navigate('ThirdQuestion'); this.setModalVisible(!modalVisible);}} >
+                                 <TouchableOpacity style={{ ...styles.openButton, backgroundColor: "#2196F3" }} onPress={() => respostaCerta()} >
                                  <Text style={styles.textStyle}>Hide Modal</Text>
                             </TouchableOpacity>
                     </View>
@@ -88,7 +96,7 @@ export default class SecondQuestion extends React.Component {
                     <View style={styles.modalView}>
                         <Image source={require('../../assets/dentinhoFeliz.png')} style={styles.imageModal} /> 
                         <Text style={styles.modalText}>Errou, jovem!</Text>
-                                 <TouchableOpacity style={{ ...styles.openButton, backgroundColor: "#2196F3" }} onPress={() => {this.setModalVisibleWrong(!modalVisibleWrong);}} >
+                                 <TouchableOpacity style={{ ...styles.openButton, backgroundColor: "#2196F3" }} onPress={() => respostaErrada()} >
                                  <Text style={styles.textStyle}>Hide Modal</Text>
                             </TouchableOpacity>
                     </View>
@@ -96,8 +104,11 @@ export default class SecondQuestion extends React.Component {
             </Modal>
         </View>
        )
-    }
+
 }
+
+export default PerguntaDois
+
 const styles = StyleSheet.create({
     background:{
       flex:1,

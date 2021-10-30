@@ -4,13 +4,15 @@ import { View, KeyboardAvoidingView, Image, TextInput, TouchableOpacity, Text,St
 import Icon from 'react-native-vector-icons/FontAwesome';
 import * as Animatable from 'react-native-animatable';
 import * as SQLite from 'expo-sqlite'; 
+import { useDispatch } from 'react-redux';
+import { Creators as PerguntasActions } from '../store/ducks/perguntas';
 
 const  db = SQLite.openDatabase('Dados.db'); // cria o banco de dados e se existir inicia o BD
 
 const AnimatedIcon = Animatable.createAnimatableComponent(Icon)
 
 export default function InitialScreen({navigation}) {
-
+    const dispatch = useDispatch()
     const[offset]=useState(new Animated.ValueXY({x:0, y:80}))
     const[logo]=useState(new Animated.ValueXY({x:200,y:200}))
     const titleGame = "DentalQuiz"
@@ -65,8 +67,11 @@ export default function InitialScreen({navigation}) {
       });
     };
 
-    useEffect(()=>{
-      console.log("Entrou no userEffect");
+    useEffect(() => {
+      dispatch(PerguntasActions.clearStore());
+    },[])
+
+    useEffect(()=> {
       createTable();
       keyboardDidShowListener = Keyboard.addListener('keyboardDidShow',keyboardDidShow);
       keyboardDidHideListener = Keyboard.addListener('keyboardDidHide',keyboardDidHide);
