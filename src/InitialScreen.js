@@ -1,16 +1,73 @@
 import 'react-native-gesture-handler';
 import React,{useState, useEffect} from 'react';
-import { View, KeyboardAvoidingView, Image, TextInput, TouchableOpacity, Text,StyleSheet, Animated,Keyboard, Button } from 'react-native';
+import { View, KeyboardAvoidingView, Image, TextInput, TouchableOpacity, Text,StyleSheet, Animated,Keyboard, Button, Alert } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import * as Animatable from 'react-native-animatable';
+import * as SQLite from 'expo-sqlite'; 
+
+const  db = SQLite.openDatabase('Dados.db'); // cria o banco de dados e se existir inicia o BD
 
 const AnimatedIcon = Animatable.createAnimatableComponent(Icon)
 
 export default function InitialScreen({navigation}) {
+
     const[offset]=useState(new Animated.ValueXY({x:0, y:80}))
     const[logo]=useState(new Animated.ValueXY({x:200,y:200}))
     const titleGame = "DentalQuiz"
+    let [userAge, setUserAge] = useState('');
+    let [userDistrict, setUserDistrict] = useState('');
+    let [typeOfSchool, setTypeOfSchool] = useState('');
+
+    const createTable = () => {
+      db.transaction(function (txn) {
+        txn.executeSql("SELECT name FROM sqlite_master WHERE type='table' AND name='information'", [], 
+        function (tx,res) {
+          console.log('item:', res.rows.length);
+         // txn.executeSql('DROP TABLE IF EXISTS INFORMATION', []);
+          if(res.rows.length == 0) {
+            txn.executeSql('CREATE TABLE IF NOT EXISTS information(student_id INTEGER PRIMARY KEY AUTOINCREMENT, idade VARCHAR(30), bairro VARCHAR(30), ensino VARCHAR(30))',[]);
+          }
+        });
+      }) 
+    }
+
+    const registrar_dados = () => {
+      console.log("Entrou");
+      if (!userAge /* || !userDistrict || !typeOfSchool*/) {
+        alert('Por favor, insira todos os dados para prosseguir');
+        return;
+      } if (isNaN(userAge)) {
+         alert('Por favor, insira todos os dados para prosseguir');
+        return;
+      }
+      db.transaction(function(tx) {
+        tx.executeSql(
+          'INSERT INTO INFORMATION (idade, bairro, ensino) VALUES (?,?,?)',
+          [userAge, userDistrict, typeOfSchool],
+          (tx, results) => {
+            console.log('Results', results.rowsAffected);
+            if(results.rowsAffected > 0){ 
+              console.log("Entrou2");
+              Alert.alert(
+                'Sucesso',
+                'Dado inserido com sucesso',
+                [
+                  {
+                    text: 'Ok',
+                    onPress: () => navigation.navigate('FirstQuestion'),
+                  },
+                ],
+                { cancelable: false }
+              );
+            } else {alert('Cadastro falhou')};
+          }
+        );
+      });
+    };
+
     useEffect(()=>{
+      console.log("Entrou no userEffect");
+      createTable();
       keyboardDidShowListener = Keyboard.addListener('keyboardDidShow',keyboardDidShow);
       keyboardDidHideListener = Keyboard.addListener('keyboardDidHide',keyboardDidHide);
       Animated.spring(offset.y,{
@@ -20,7 +77,9 @@ export default function InitialScreen({navigation}) {
         }).start();
     },[]);
     
-    
+/*    function registerAgeDistrict(){
+       Information.create(userAge);
+    }*/
     function keyboardDidShow(){
       Animated.parallel([
         Animated.timing(logo.x,{toValue:55,duration:100}),
@@ -40,6 +99,7 @@ export default function InitialScreen({navigation}) {
         }),
       ]).start();
     }
+
     return (
       <KeyboardAvoidingView style={styles.background}>
         <View style={styles.containerLogo}>
@@ -66,12 +126,23 @@ export default function InitialScreen({navigation}) {
           <TextInput 
           style={styles.input}
           placeholder="Idade"
-          onChangeText={()=>{}}
+          onChangeText={(userAge)=>setUserAge(userAge)}
+          />
+          <TextInput 
+          style={styles.input}
+          placeholder="Bairro"
+          onChangeText={(userDistrict)=>setUserDistrict(userDistrict)}
+          />
+          <TextInput 
+          style={styles.input}
+          placeholder="Ensino público ou particular"
+          onChangeText={(typeOfSchool)=>setTypeOfSchool(typeOfSchool)}
           />
           <TouchableOpacity style={styles.btnSubmit}>
             <Button
-            title="StartGame"
-            onPress={()=>navigation.navigate('FirstQuestion')}
+            title="Cadastrar"
+            onPress={registrar_dados}
+                    
             />
           </TouchableOpacity>
         </Animated.View>

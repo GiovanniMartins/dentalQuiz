@@ -28,13 +28,13 @@ export default class ThirdQuestion extends Component {
         <View  style={styles.background}>
             <View>
                 <View>
-                    <Text style={styles.backgroundQuestion}>Pergunta3</Text>
+                    <Text style={styles.backgroundQuestion}>Para que serve o aparelho dental?</Text>
                 </View>
             </View>
             
             <View style ={styles.backView}>
                 <TouchableOpacity style = {styles.backgroundTouchableOpacity} onPress={() => {this.setModalVisible(true);}}>
-                    <Image source={require('../assets/dentinhoFeliz.png')}
+                    <Image source={require('../assets/a13.png')}
                         style={{ width: 130, height: 130}}/> 
                         
                 </TouchableOpacity>
@@ -82,7 +82,7 @@ export default class ThirdQuestion extends Component {
                 <View>
                     <View style={styles.modalView}>
                         <Image source={require('../assets/dentinhoFeliz.png')} style={styles.imageModal} /> 
-                        <Text style={styles.modalText}>Errou, jovem!</Text>
+                        <Text style={styles.modalText}>Errou, jovem! Ele serve para corrigir falhas na dentição</Text>
                                  <TouchableOpacity style={{ ...styles.openButton, backgroundColor: "#2196F3" }} onPress={() => {this.setModalVisibleWrong(!modalVisibleWrong);}} >
                                  <Text style={styles.textStyle}>Hide Modal</Text>
                             </TouchableOpacity>
@@ -104,7 +104,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#84a5c4',
         justifyContent: 'center',
         alignItems: 'center',
-        marginTop:-30,
+        marginTop:-150,
         height: 81,
         borderRadius: 20,
         color: '#222',

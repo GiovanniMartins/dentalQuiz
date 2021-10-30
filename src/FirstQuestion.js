@@ -6,17 +6,19 @@ import { TouchableHighlight } from 'react-native-gesture-handler';
 
 //import  SecondQuestion  from './src/SecondQuestion';
 
-export default class FirstQuestion extends Component {
-    //const imageCorrect = require('...')
-    //const imageCorrect = require('...')
+export default class FirstQuestion extends React.Component {
     state = {
         modalVisible: false,
-        modalVisibleWrong: false
+        modalVisibleWrong: false,
+        answerOne: false
     };
     setModalVisible = (visible) => {
         this.setState({ modalVisible: visible });
     }
     setModalVisibleWrong = (visible) => {
+        this.setState({ modalVisibleWrong: visible });
+    }
+    setAnswerOne = (visible) => {
         this.setState({ modalVisibleWrong: visible });
     }
     render(){
@@ -28,30 +30,30 @@ export default class FirstQuestion extends Component {
         <View  style={styles.background}>
             <View>
                 <View>
-                    <Text style={styles.backgroundQuestion}>Quantas vezes você escova os dentes ao dia?</Text>
+                    <Text style={styles.backgroundQuestion}>Qual a frequência correta de escovação dos dentes?</Text>
                 </View>
             </View>
             
             <View style ={styles.backView}>
-                <TouchableOpacity style = {styles.backgroundTouchableOpacity} onPress={() => {this.setModalVisible(true);}}>
-                    <Image source={require('../assets/dentinhoFeliz.png')}
+                <TouchableOpacity style = {styles.backgroundTouchableOpacity} onPress={() => {this.setModalVisible(true)}}>
+                    <Image source={require('../assets/1.png')}
                         style={{ width: 130, height: 130}}/> 
                         
                 </TouchableOpacity>
 
                 <TouchableOpacity style = {styles.backgroundTouchableOpacity2} onPress={() => {this.setModalVisibleWrong(true);}}>
-                    <Image source={require('../assets/dentinhoFeliz.png')}
+                    <Image source={require('../assets/2.png')}
                         style={{ width: 130, height: 130 }}/> 
                 </TouchableOpacity>
             </View>
             <View style ={styles.backView2}>
                 <TouchableOpacity style = {styles.backgroundTouchableOpacity} onPress={() => {this.setModalVisibleWrong(true);}}>
-                    <Image source={require('../assets/dentinhoFeliz.png')}
+                    <Image source={require('../assets/3.png')}
                         style={{ width: 130, height: 130}}/> 
                 </TouchableOpacity>
 
                 <TouchableOpacity style = {styles.backgroundTouchableOpacity2} onPress={() => {this.setModalVisibleWrong(true);}}>
-                    <Image source={require('../assets/dentinhoFeliz.png')}
+                    <Image source={require('../assets/4.png')}
                         style={{ width: 130, height: 130 }}/> 
                 </TouchableOpacity>
             </View>
@@ -66,7 +68,7 @@ export default class FirstQuestion extends Component {
                     <View style={styles.modalView}>
                         <Image source={require('../assets/dentinhoFeliz.png')} style={styles.imageModal} /> 
                         <Text style={styles.modalText}>Acertou, jovem!</Text>
-                            <TouchableOpacity style={{ ...styles.openButton, backgroundColor: "#2196F3" }} onPress={()=>{navigation.navigate('SecondQuestion'); this.setModalVisible(!modalVisible);}}  >
+                            <TouchableOpacity style={{ ...styles.openButton, backgroundColor: "#2196F3" }} onPress={()=>{this.props.navigation.navigate('SecondQuestion', {contadorAcertos :1} ); this.setModalVisible(!modalVisible);}}>
                                  <Text style={styles.textStyle}>Hide Modal</Text>
                             </TouchableOpacity>
                     </View>
@@ -104,8 +106,8 @@ const styles = StyleSheet.create({
         backgroundColor: '#84a5c4',
         justifyContent: 'center',
         alignItems: 'center',
-        marginTop:-30,
-        height: 81,
+        marginTop:-150,
+        height: 70,
         borderRadius: 20,
         color: '#222',
         fontSize:  25

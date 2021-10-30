@@ -28,7 +28,7 @@ export default class SeventhQuestion extends Component {
         <View  style={styles.background}>
             <View>
                 <View>
-                    <Text style={styles.backgroundQuestion}>pergunta7</Text>
+                    <Text style={styles.backgroundQuestion}>Qual a quantidade correta de pasta de dente?</Text>
                 </View>
             </View>
             
@@ -82,7 +82,7 @@ export default class SeventhQuestion extends Component {
                 <View>
                     <View style={styles.modalView}>
                         <Image source={require('../assets/dentinhoFeliz.png')} style={styles.imageModal} /> 
-                        <Text style={styles.modalText}>Errou, jovem!</Text>
+                        <Text style={styles.modalText}>Errou, jovem! A quantidade é só um pingo de pasta</Text>
                             <TouchableOpacity style={{ ...styles.openButton, backgroundColor: "#2196F3" }} onPress={() => {this.setModalVisibleWrong(!modalVisibleWrong);}} >
                                  <Text style={styles.textStyle}>Hide Modal</Text>
                             </TouchableOpacity>
@@ -104,7 +104,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#84a5c4',
         justifyContent: 'center',
         alignItems: 'center',
-        marginTop:-30,
+        marginTop:-150,
         height: 81,
         borderRadius: 20,
         color: '#222',

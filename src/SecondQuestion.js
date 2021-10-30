@@ -5,7 +5,7 @@ import { TouchableHighlight } from 'react-native-gesture-handler';
 
 
 
-export default class SecondQuestion extends Component {
+export default class SecondQuestion extends React.Component {
     //const imageCorrect = require('...')
     //const imageCorrect = require('...')
     state = {
@@ -18,40 +18,45 @@ export default class SecondQuestion extends Component {
     setModalVisibleWrong = (visible) => {
         this.setState({ modalVisibleWrong: visible });
     }
-
+    
     render(){
+    const  { navigation } = this.props;
+    console.log(this.props.route)
+    const contadorAcertos = this.props.route.params.contadorAcertos;//navigation.getParam('contadorAcertos', 'NO');
+    console.log("Contador", contadorAcertos);
+    console.log("Contador", contadorAcertos);
     const { modalVisible } = this.state;
     const { modalVisibleWrong } = this.state;
-    const { navigation } = this.props
+    
        return(
         
         <View  style={styles.background}>
             <View>
                 <View>
-                    <Text style={styles.backgroundQuestion}>Pergunta2</Text>
+                    <Text style={styles.backgroundQuestion}>Quem é a pessoa mais indicada a orientar sobre saúde bucal?</Text>
                 </View>
             </View>
             
             <View style ={styles.backView}>
                 <TouchableOpacity style = {styles.backgroundTouchableOpacity} onPress={() => {this.setModalVisible(true);}}>
-                    <Image source={require('../assets/dentinhoFeliz.png')}
+                    <Image source={require('../assets/dentista.png')}
                         style={{ width: 130, height: 130}}/> 
                         
                 </TouchableOpacity>
 
                 <TouchableOpacity style = {styles.backgroundTouchableOpacity2} onPress={() => {this.setModalVisibleWrong(true);}}>
-                    <Image source={require('../assets/dentinhoFeliz.png')}
+                    <Image source={require('../assets/eletricista.png')}
                         style={{ width: 130, height: 130 }}/> 
                 </TouchableOpacity>
             </View>
             <View style ={styles.backView2}>
                 <TouchableOpacity style = {styles.backgroundTouchableOpacity} onPress={() => {this.setModalVisibleWrong(true);}}>
-                    <Image source={require('../assets/dentinhoFeliz.png')}
+                    <Image source={require('../assets/policial.png')}
                         style={{ width: 130, height: 130}}/> 
                 </TouchableOpacity>
 
                 <TouchableOpacity style = {styles.backgroundTouchableOpacity2} onPress={() => {this.setModalVisibleWrong(true);}}>
-                    <Image source={require('../assets/dentinhoFeliz.png')}
+                    <Image source={require('../assets/professor.png')}
                         style={{ width: 130, height: 130 }}/> 
                 </TouchableOpacity>
             </View>
@@ -104,7 +109,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#84a5c4',
         justifyContent: 'center',
         alignItems: 'center',
-        marginTop:-30,
+        marginTop:-150,
         height: 81,
         borderRadius: 20,
         color: '#222',

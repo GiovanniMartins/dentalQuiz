@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "742391851794",
+    "project_id": "tcc-dentalquiz",
+    "storage_bucket": "tcc-dentalquiz.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:742391851794:android:36357a838269517ac621cb",
+        "android_client_info": {
+          "package_name": "com.dentalQuiz"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "742391851794-uic9n2aebms4rufh1p730kmv099bar7k.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAsF8u-zVJgJBzDkIBkLU5NyKYu4Ghjq2E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "742391851794-uic9n2aebms4rufh1p730kmv099bar7k.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

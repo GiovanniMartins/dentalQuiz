@@ -28,30 +28,30 @@ export default class FifthQuestion extends Component {
         <View  style={styles.background}>
             <View>
                 <View>
-                    <Text style={styles.backgroundQuestion}>Pergunta5</Text>
+                    <Text style={styles.backgroundQuestion}>Qual o principal alimento que causa cárie?</Text>
                 </View>
             </View>
             
             <View style ={styles.backView}>
                 <TouchableOpacity style = {styles.backgroundTouchableOpacity} onPress={() => {this.setModalVisible(true);}}>
-                    <Image source={require('../assets/dentinhoFeliz.png')}
+                    <Image source={require('../assets/brigadeiro.png')}
                         style={{ width: 130, height: 130}}/> 
                         
                 </TouchableOpacity>
 
                 <TouchableOpacity style = {styles.backgroundTouchableOpacity2} onPress={() => {this.setModalVisibleWrong(true);}}>
-                    <Image source={require('../assets/dentinhoFeliz.png')}
+                    <Image source={require('../assets/pao.png')}
                         style={{ width: 130, height: 130 }}/> 
                 </TouchableOpacity>
             </View>
             <View style ={styles.backView2}>
                 <TouchableOpacity style = {styles.backgroundTouchableOpacity} onPress={() => {this.setModalVisibleWrong(true);}}>
-                    <Image source={require('../assets/dentinhoFeliz.png')}
+                    <Image source={require('../assets/alface.png')}
                         style={{ width: 130, height: 130}}/> 
                 </TouchableOpacity>
 
                 <TouchableOpacity style = {styles.backgroundTouchableOpacity2} onPress={() => {this.setModalVisibleWrong(true);}}>
-                    <Image source={require('../assets/dentinhoFeliz.png')}
+                    <Image source={require('../assets/agua.png')}
                         style={{ width: 130, height: 130 }}/> 
                 </TouchableOpacity>
             </View>
@@ -104,7 +104,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#84a5c4',
         justifyContent: 'center',
         alignItems: 'center',
-        marginTop:-30,
+        marginTop:-150,
         height: 81,
         borderRadius: 20,
         color: '#222',

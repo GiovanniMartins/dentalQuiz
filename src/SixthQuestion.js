@@ -28,7 +28,7 @@ export default class SixthQuestion extends Component {
         <View  style={styles.background}>
             <View>
                 <View>
-                    <Text style={styles.backgroundQuestion}>pergunta6</Text>
+                    <Text style={styles.backgroundQuestion}>Qual a função do flúor?</Text>
                 </View>
             </View>
             
@@ -104,7 +104,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#84a5c4',
         justifyContent: 'center',
         alignItems: 'center',
-        marginTop:-30,
+        marginTop:-150,
         height: 81,
         borderRadius: 20,
         color: '#222',

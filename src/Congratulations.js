@@ -6,7 +6,7 @@ import { TouchableHighlight } from 'react-native-gesture-handler';
 
 //import  SecondQuestion  from './src/SecondQuestion';
 
-export default class TenthQuestion extends Component {
+export default class Congratulations extends Component {
     //const imageCorrect = require('...')
     //const imageCorrect = require('...')
     state = {
