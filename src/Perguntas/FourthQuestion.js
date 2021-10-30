@@ -4,13 +4,13 @@ import React, {Component} from 'react';
 import { TouchableHighlight } from 'react-native-gesture-handler';
 
 
-//import  SecondQuestion  from './src/SecondQuestion';
 
-export default class FirstQuestion extends React.Component {
+export default class FourthQuestion extends Component {
+    //const imageCorrect = require('...')
+    //const imageCorrect = require('...')
     state = {
         modalVisible: false,
-        modalVisibleWrong: false,
-        answerOne: false
+        modalVisibleWrong: false
     };
     setModalVisible = (visible) => {
         this.setState({ modalVisible: visible });
@@ -18,9 +18,7 @@ export default class FirstQuestion extends React.Component {
     setModalVisibleWrong = (visible) => {
         this.setState({ modalVisibleWrong: visible });
     }
-    setAnswerOne = (visible) => {
-        this.setState({ modalVisibleWrong: visible });
-    }
+
     render(){
     const { modalVisible } = this.state;
     const { modalVisibleWrong } = this.state;
@@ -30,30 +28,19 @@ export default class FirstQuestion extends React.Component {
         <View  style={styles.background}>
             <View>
                 <View>
-                    <Text style={styles.backgroundQuestion}>Qual a frequência correta de escovação dos dentes?</Text>
+                    <Text style={styles.backgroundQuestion}>Você usa fio dental?</Text>
                 </View>
             </View>
             
             <View style ={styles.backView}>
-                <TouchableOpacity style = {styles.backgroundTouchableOpacity} onPress={() => {this.setModalVisible(true)}}>
-                    <Image source={require('../assets/1.png')}
+                <TouchableOpacity style = {styles.backgroundTouchableOpacity} onPress={() => {this.setModalVisible(true);}}>
+                    <Image source={require('../../assets/certo.png')}
                         style={{ width: 130, height: 130}}/> 
                         
                 </TouchableOpacity>
 
                 <TouchableOpacity style = {styles.backgroundTouchableOpacity2} onPress={() => {this.setModalVisibleWrong(true);}}>
-                    <Image source={require('../assets/2.png')}
-                        style={{ width: 130, height: 130 }}/> 
-                </TouchableOpacity>
-            </View>
-            <View style ={styles.backView2}>
-                <TouchableOpacity style = {styles.backgroundTouchableOpacity} onPress={() => {this.setModalVisibleWrong(true);}}>
-                    <Image source={require('../assets/3.png')}
-                        style={{ width: 130, height: 130}}/> 
-                </TouchableOpacity>
-
-                <TouchableOpacity style = {styles.backgroundTouchableOpacity2} onPress={() => {this.setModalVisibleWrong(true);}}>
-                    <Image source={require('../assets/4.png')}
+                    <Image source={require('../../assets/errado.png')}
                         style={{ width: 130, height: 130 }}/> 
                 </TouchableOpacity>
             </View>
@@ -66,9 +53,9 @@ export default class FirstQuestion extends React.Component {
                     }}>
                 <View>
                     <View style={styles.modalView}>
-                        <Image source={require('../assets/dentinhoFeliz.png')} style={styles.imageModal} /> 
-                        <Text style={styles.modalText}>Acertou, jovem!</Text>
-                            <TouchableOpacity style={{ ...styles.openButton, backgroundColor: "#2196F3" }} onPress={()=>{this.props.navigation.navigate('SecondQuestion', {contadorAcertos :1} ); this.setModalVisible(!modalVisible);}}>
+                        <Image source={require('../../assets/dentinhoFeliz.png')} style={styles.imageModal} /> 
+                        <Text style={styles.modalText}>Muito bem, jovem!</Text>
+                                 <TouchableOpacity style={{ ...styles.openButton, backgroundColor: "#2196F3" }} onPress={()=>{navigation.navigate('FifthQuestion'); this.setModalVisible(!modalVisible);}} >
                                  <Text style={styles.textStyle}>Hide Modal</Text>
                             </TouchableOpacity>
                     </View>
@@ -83,9 +70,9 @@ export default class FirstQuestion extends React.Component {
                     }}>
                 <View>
                     <View style={styles.modalView}>
-                        <Image source={require('../assets/dentinhoFeliz.png')} style={styles.imageModal} /> 
-                        <Text style={styles.modalText}>Errou, jovem!</Text>
-                            <TouchableOpacity style={{ ...styles.openButton, backgroundColor: "#2196F3" }} onPress={() => {this.setModalVisibleWrong(!modalVisibleWrong);}} >
+                        <Image source={require('../../assets/dentinhoFeliz.png')} style={styles.imageModal} /> 
+                        <Text style={styles.modalText}>Lembre-se, é necessário SEMPRE que escovar os dentes usar depois o fio dental!</Text>
+                                 <TouchableOpacity style={{ ...styles.openButton, backgroundColor: "#2196F3" }} onPress={() => {this.setModalVisibleWrong(!modalVisibleWrong);}} >
                                  <Text style={styles.textStyle}>Hide Modal</Text>
                             </TouchableOpacity>
                     </View>
@@ -106,8 +93,8 @@ const styles = StyleSheet.create({
         backgroundColor: '#84a5c4',
         justifyContent: 'center',
         alignItems: 'center',
-        marginTop:-150,
-        height: 70,
+        marginTop:-230,
+        height: 81,
         borderRadius: 20,
         color: '#222',
         fontSize:  25

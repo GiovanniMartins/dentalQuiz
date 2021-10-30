@@ -7,26 +7,26 @@ import * as React from 'react';
 //import useDatabase from './hooks/useDatabase'
 
 //screens                        
-import  InitialScreen   from './src/InitialScreen'; 
-import  FirstQuestion   from './src/FirstQuestion';
-import  SecondQuestion  from './src/SecondQuestion';
-import  ThirdQuestion   from './src/ThirdQuestion';
-import  FourthQuestion  from './src/FourthQuestion';
-import  FifthQuestion  from './src/FifthQuestion';
-import  SixthQuestion  from './src/SixthQuestion';
-import  SeventhQuestion  from './src/SeventhQuestion';
-import  EighthQuestion  from './src/EighthQuestion';
-import  NinethQuestion  from './src/NinethQuestion';
-import  TenthQuestion  from './src/TenthQuestion';
-import  Congratulations from './src/Congratulations';
-import  AvaliationOne from './src/AvaliationOne';
-import  HomeScreen from './src/HomeScreen';
-import  AvaliationTwo from './src/AvaliationTwo';
-import  AvaliationThree from './src/AvaliationThree';
-import ListaTodosDados from './src/ListaTodosDados';
-import ListaPorBairro from './src/ListaPorBairro';
-import ListaPorIdade from './src/ListaPorIdade';
-import ListaPorEnsino from './src/ListaPorEnsino';
+import  InitialScreen   from './src/Cadastro/InitialScreen'; 
+import  FirstQuestion   from './src/Perguntas/FirstQuestion';
+import  SecondQuestion  from './src/Perguntas/SecondQuestion';
+import  ThirdQuestion   from './src/Perguntas/ThirdQuestion';
+import  FourthQuestion  from './src/Perguntas/FourthQuestion';
+import  FifthQuestion  from './src/Perguntas/FifthQuestion';
+import  SixthQuestion  from './src/Perguntas/SixthQuestion';
+import  SeventhQuestion  from './src/Perguntas/SeventhQuestion';
+import  EighthQuestion  from './src/Perguntas/EighthQuestion';
+import  NinethQuestion  from './src/Perguntas/NinethQuestion';
+import  TenthQuestion  from './src/Perguntas/TenthQuestion';
+import  Congratulations from './src/Perguntas/Congratulations';
+import  AvaliationOne from './src/Avaliacoes/AvaliationOne';
+import  HomeScreen from './src/Home/HomeScreen';
+import  AvaliationTwo from './src/Avaliacoes/AvaliationTwo';
+import  AvaliationThree from './src/Avaliacoes/AvaliationThree';
+import ListaTodosDados from './src/Listagem/ListaTodosDados';
+import ListaPorBairro from './src/Listagem/ListaPorBairro';
+import ListaPorIdade from './src/Listagem/ListaPorIdade';
+import ListaPorEnsino from './src/Listagem/ListaPorEnsino';
 
 //<Stack.Screen name="AvaliationOne" component={AvaliationOne}/>
  //       <Stack.Screen name="AvaliationTwo" component={AvaliationTwo}/>
@@ -45,8 +45,11 @@ export default function App(propos){
 
     return(
       <NavigationContainer>
-        <Stack.Navigator initialRouteName="HomeScreen">
-          <Stack.Screen name="HomeScreen" component={HomeScreen}/>
+        <Stack.Navigator initialRouteName="HomeScreen" >
+          <Stack.Screen name="HomeScreen" component={HomeScreen} options={{
+                  title: "",
+                  headerShown: true,
+                }}/>
           <Stack.Screen name="InitialScreen" component={InitialScreen}/>
           <Stack.Screen name="FirstQuestion" component={FirstQuestion}/>
           <Stack.Screen name="SecondQuestion" component={SecondQuestion}/>

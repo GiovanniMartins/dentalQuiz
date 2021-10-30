@@ -6,7 +6,7 @@ import { TouchableHighlight } from 'react-native-gesture-handler';
 
 //import  SecondQuestion  from './src/SecondQuestion';
 
-export default class NinethQuestion extends Component {
+export default class SixthQuestion extends Component {
     //const imageCorrect = require('...')
     //const imageCorrect = require('...')
     state = {
@@ -28,19 +28,30 @@ export default class NinethQuestion extends Component {
         <View  style={styles.background}>
             <View>
                 <View>
-                    <Text style={styles.backgroundQuestion}>É preciso escovar a lingua?</Text>
+                    <Text style={styles.backgroundQuestion}>Qual a função do flúor?</Text>
                 </View>
             </View>
             
             <View style ={styles.backView}>
                 <TouchableOpacity style = {styles.backgroundTouchableOpacity} onPress={() => {this.setModalVisible(true);}}>
-                    <Image source={require('../assets/certo.png')}
+                    <Image source={require('../../assets/dentinhoFeliz.png')}
                         style={{ width: 130, height: 130}}/> 
                         
                 </TouchableOpacity>
 
                 <TouchableOpacity style = {styles.backgroundTouchableOpacity2} onPress={() => {this.setModalVisibleWrong(true);}}>
-                    <Image source={require('../assets/errado.png')}
+                    <Image source={require('../../assets/dentinhoFeliz.png')}
+                        style={{ width: 130, height: 130 }}/> 
+                </TouchableOpacity>
+            </View>
+            <View style ={styles.backView2}>
+                <TouchableOpacity style = {styles.backgroundTouchableOpacity} onPress={() => {this.setModalVisibleWrong(true);}}>
+                    <Image source={require('../../assets/dentinhoFeliz.png')}
+                        style={{ width: 130, height: 130}}/> 
+                </TouchableOpacity>
+
+                <TouchableOpacity style = {styles.backgroundTouchableOpacity2} onPress={() => {this.setModalVisibleWrong(true);}}>
+                    <Image source={require('../../assets/dentinhoFeliz.png')}
                         style={{ width: 130, height: 130 }}/> 
                 </TouchableOpacity>
             </View>
@@ -53,9 +64,9 @@ export default class NinethQuestion extends Component {
                     }}>
                 <View>
                     <View style={styles.modalView}>
-                        <Image source={require('../assets/dentinhoFeliz.png')} style={styles.imageModal} /> 
+                        <Image source={require('../../assets/dentinhoFeliz.png')} style={styles.imageModal} /> 
                         <Text style={styles.modalText}>Acertou, jovem!</Text>
-                            <TouchableOpacity style={{ ...styles.openButton, backgroundColor: "#2196F3" }} onPress={()=>{navigation.navigate('TenthQuestion'); this.setModalVisible(!modalVisible);}}  >
+                            <TouchableOpacity style={{ ...styles.openButton, backgroundColor: "#2196F3" }} onPress={()=>{navigation.navigate('SeventhQuestion'); this.setModalVisible(!modalVisible);}}  >
                                  <Text style={styles.textStyle}>Hide Modal</Text>
                             </TouchableOpacity>
                     </View>
@@ -70,8 +81,8 @@ export default class NinethQuestion extends Component {
                     }}>
                 <View>
                     <View style={styles.modalView}>
-                        <Image source={require('../assets/dentinhoFeliz.png')} style={styles.imageModal} /> 
-                        <Text style={styles.modalText}>Errou, jovem! Tem que escovar  a língua</Text>
+                        <Image source={require('../../assets/dentinhoFeliz.png')} style={styles.imageModal} /> 
+                        <Text style={styles.modalText}>Errou, jovem!</Text>
                             <TouchableOpacity style={{ ...styles.openButton, backgroundColor: "#2196F3" }} onPress={() => {this.setModalVisibleWrong(!modalVisibleWrong);}} >
                                  <Text style={styles.textStyle}>Hide Modal</Text>
                             </TouchableOpacity>
@@ -93,7 +104,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#84a5c4',
         justifyContent: 'center',
         alignItems: 'center',
-        marginTop:-230,
+        marginTop:-150,
         height: 81,
         borderRadius: 20,
         color: '#222',

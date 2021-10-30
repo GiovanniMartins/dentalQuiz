@@ -104,7 +104,7 @@ export default function InitialScreen({navigation}) {
       <KeyboardAvoidingView style={styles.background}>
         <View style={styles.containerLogo}>
           <Animated.Image
-            source={require('../assets/dentinhoFeliz.png')}
+            source={require('../../assets/dentinhoFeliz.png')}
             style={{ width: logo.x, height: logo.y }}
           /> 
           <Text style={{fontSize: 40, flexDirection: 'column', justifyContent: 'center', alignItems: 'stretch',}}>

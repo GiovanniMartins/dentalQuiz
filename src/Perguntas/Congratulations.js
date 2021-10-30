@@ -35,7 +35,7 @@ export default class Congratulations extends Component {
             <View style={styles.containerLogo}>
                 
                     <Animated.Image
-                        source={require('../assets/dentinhoFeliz.png')}
+                        source={require('../../assets/dentinhoFeliz.png')}
                         style={{ width: 127, height:127 }}
                     /> 
                     <Button style={styles.btnSubmit}
@@ -53,7 +53,7 @@ export default class Congratulations extends Component {
                     }}>
                 <View>
                     <View style={styles.modalView}>
-                        <Image source={require('../assets/dentinhoFeliz.png')} style={styles.imageModal} /> 
+                        <Image source={require('../../assets/dentinhoFeliz.png')} style={styles.imageModal} /> 
                         <Text style={styles.modalText}>Acertou, jovem!</Text>
                             <TouchableOpacity style={{ ...styles.openButton, backgroundColor: "#2196F3" }} onPress={()=>{navigation.navigate('TenthQuestion'); this.setModalVisible(!modalVisible);}}  >
                                  <Text style={styles.textStyle}>Hide Modal</Text>
@@ -70,7 +70,7 @@ export default class Congratulations extends Component {
                     }}>
                 <View>
                     <View style={styles.modalView}>
-                        <Image source={require('../assets/dentinhoFeliz.png')} style={styles.imageModal} /> 
+                        <Image source={require('../../assets/dentinhoFeliz.png')} style={styles.imageModal} /> 
                         <Text style={styles.modalText}>Errou, jovem!</Text>
                             <TouchableOpacity style={{ ...styles.openButton, backgroundColor: "#2196F3" }} onPress={() => {this.setModalVisibleWrong(!modalVisibleWrong);}} >
                                  <Text style={styles.textStyle}>Hide Modal</Text>
