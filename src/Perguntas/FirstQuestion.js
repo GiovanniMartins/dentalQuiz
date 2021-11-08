@@ -3,13 +3,14 @@ import { View, Alert, Modal,KeyboardAvoidingView, Image, TextInput, TouchableOpa
 import React, {useEffect, useState} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { Creators as PerguntasActions } from '../store/ducks/perguntas';
+import perguntas, { Creators as PerguntasActions } from '../store/ducks/perguntas';
 
 
 const PerguntaUm = ({navigation}) => {
     const [modalVisible, setModalVisible] = useState(false);
     const [modalVisibleWrong, setModalVisibleWrong] = useState(false);
     const dispatch = useDispatch()
+    
 
     // useEffect(() => {
     //     if (respondidoState == 1) {
@@ -27,7 +28,7 @@ const PerguntaUm = ({navigation}) => {
         dispatch(PerguntasActions.salvarAcertos(1));
         dispatch(PerguntasActions.salvarRespondidos(1));
         setModalVisible(!modalVisible);        
-        navigation.navigate('SecondQuestion');      
+        navigation.navigate('SecondQuestion');
     }
 
     const respostaErrada = () => {
@@ -35,6 +36,10 @@ const PerguntaUm = ({navigation}) => {
         setModalVisible(!modalVisible);
         navigation.navigate('SecondQuestion');
     }
+
+    const qtdAcertos = useSelector((store) => store.perguntas.qtdAcertos);
+    console.log(qtdAcertos + "teste");
+    
 
     return (        
         <View  style={styles.background}>

@@ -37,6 +37,7 @@ export default function ListaTodosDados(){
                           <Text>Idade: {item.idade}</Text>
                           <Text>Bairro: {item.bairro}</Text>
                           <Text>TipoEnsino: {item.ensino}</Text>
+                          <Text> Perguntas: {item.respostasCertas}</Text>
                 </View>
             );
         };

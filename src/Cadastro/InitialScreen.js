@@ -27,7 +27,7 @@ export default function InitialScreen({navigation}) {
           console.log('item:', res.rows.length);
          // txn.executeSql('DROP TABLE IF EXISTS INFORMATION', []);
           if(res.rows.length == 0) {
-            txn.executeSql('CREATE TABLE IF NOT EXISTS information(student_id INTEGER PRIMARY KEY AUTOINCREMENT, idade VARCHAR(30), bairro VARCHAR(30), ensino VARCHAR(30))',[]);
+            txn.executeSql('CREATE TABLE IF NOT EXISTS information(student_id INTEGER PRIMARY KEY AUTOINCREMENT, idade VARCHAR(30), bairro VARCHAR(30), ensino VARCHAR(30), respostasCertas)',[]);
           }
         });
       }) 

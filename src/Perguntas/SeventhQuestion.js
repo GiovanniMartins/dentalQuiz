@@ -1,29 +1,28 @@
 //import * as React from 'react';
 import { View, Alert, Modal,KeyboardAvoidingView, Image, TextInput, TouchableOpacity, Text,StyleSheet, Animated,Keyboard, Button, ImageBackground } from 'react-native';
-import React, {Component} from 'react';
-import { TouchableHighlight } from 'react-native-gesture-handler';
+import React, {useEffect, useState} from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import perguntas, { Creators as PerguntasActions } from '../store/ducks/perguntas';
 
+const PerguntaSete = ({navigation}) => {
+    const [modalVisible, setModalVisible] = useState(false);
+    const [modalVisibleWrong, setModalVisibleWrong] = useState(false);
+    const dispatch = useDispatch()
 
-//import  SecondQuestion  from './src/SecondQuestion';
-
-export default class SeventhQuestion extends Component {
-    //const imageCorrect = require('...')
-    //const imageCorrect = require('...')
-    state = {
-        modalVisible: false,
-        modalVisibleWrong: false
-    };
-    setModalVisible = (visible) => {
-        this.setState({ modalVisible: visible });
+    const respostaCerta = () => {
+        dispatch(PerguntasActions.salvarAcertos(7));
+        dispatch(PerguntasActions.salvarRespondidos(7));
+        setModalVisible(!modalVisible);        
+        navigation.navigate('EighthQuestion');      
     }
-    setModalVisibleWrong = (visible) => {
-        this.setState({ modalVisibleWrong: visible });
+
+    const respostaErrada = () => {
+        dispatch(PerguntasActions.salvarRespondidos(7));
+        setModalVisible(!modalVisible);
+        navigation.navigate('EighthQuestion');
     }
-    render(){
-    const { modalVisible } = this.state;
-    const { modalVisibleWrong } = this.state;
-    const { navigation } = this.props
-       return(
+
+    return(
         
         <View  style={styles.background}>
             <View>
@@ -33,24 +32,24 @@ export default class SeventhQuestion extends Component {
             </View>
             
             <View style ={styles.backView}>
-                <TouchableOpacity style = {styles.backgroundTouchableOpacity} onPress={() => {this.setModalVisible(true);}}>
+                <TouchableOpacity style = {styles.backgroundTouchableOpacity} onPress={() => {setModalVisible(true);}}>
                     <Image source={require('../../assets/dentinhoFeliz.png')}
                         style={{ width: 130, height: 130}}/> 
                         
                 </TouchableOpacity>
 
-                <TouchableOpacity style = {styles.backgroundTouchableOpacity2} onPress={() => {this.setModalVisibleWrong(true);}}>
+                <TouchableOpacity style = {styles.backgroundTouchableOpacity2} onPress={() => {setModalVisibleWrong(true);}}>
                     <Image source={require('../../assets/dentinhoFeliz.png')}
                         style={{ width: 130, height: 130 }}/> 
                 </TouchableOpacity>
             </View>
             <View style ={styles.backView2}>
-                <TouchableOpacity style = {styles.backgroundTouchableOpacity} onPress={() => {this.setModalVisibleWrong(true);}}>
+                <TouchableOpacity style = {styles.backgroundTouchableOpacity} onPress={() => {setModalVisibleWrong(true);}}>
                     <Image source={require('../../assets/dentinhoFeliz.png')}
                         style={{ width: 130, height: 130}}/> 
                 </TouchableOpacity>
 
-                <TouchableOpacity style = {styles.backgroundTouchableOpacity2} onPress={() => {this.setModalVisibleWrong(true);}}>
+                <TouchableOpacity style = {styles.backgroundTouchableOpacity2} onPress={() => {setModalVisibleWrong(true);}}>
                     <Image source={require('../../assets/dentinhoFeliz.png')}
                         style={{ width: 130, height: 130 }}/> 
                 </TouchableOpacity>
@@ -66,7 +65,7 @@ export default class SeventhQuestion extends Component {
                     <View style={styles.modalView}>
                         <Image source={require('../../assets/dentinhoFeliz.png')} style={styles.imageModal} /> 
                         <Text style={styles.modalText}>Acertou, jovem!</Text>
-                            <TouchableOpacity style={{ ...styles.openButton, backgroundColor: "#2196F3" }} onPress={()=>{navigation.navigate('EighthQuestion'); this.setModalVisible(!modalVisible);}}  >
+                            <TouchableOpacity style={{ ...styles.openButton, backgroundColor: "#2196F3" }} onPress={()=> respostaCerta()}  >
                                  <Text style={styles.textStyle}>Hide Modal</Text>
                             </TouchableOpacity>
                     </View>
@@ -83,7 +82,7 @@ export default class SeventhQuestion extends Component {
                     <View style={styles.modalView}>
                         <Image source={require('../../assets/dentinhoFeliz.png')} style={styles.imageModal} /> 
                         <Text style={styles.modalText}>Errou, jovem! A quantidade é só um pingo de pasta</Text>
-                            <TouchableOpacity style={{ ...styles.openButton, backgroundColor: "#2196F3" }} onPress={() => {this.setModalVisibleWrong(!modalVisibleWrong);}} >
+                            <TouchableOpacity style={{ ...styles.openButton, backgroundColor: "#2196F3" }} onPress={() => respostaErrada()} >
                                  <Text style={styles.textStyle}>Hide Modal</Text>
                             </TouchableOpacity>
                     </View>
@@ -91,8 +90,10 @@ export default class SeventhQuestion extends Component {
             </Modal>
         </View>
        )
-    }
 }
+
+export default PerguntaSete
+
 const styles = StyleSheet.create({
     background:{
       flex:1,
