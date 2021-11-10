@@ -13,30 +13,36 @@ const PerguntaDez = ({navigation}) => {
     const dispatch = useDispatch()
     let [userAnswer, setUserAnswer] = useState('');
 
+    const qtdAcertos = useSelector((store) => store.perguntas.qtdAcertos);
+
     const respostaCerta = () => {
-        dispatch(PerguntasActions.salvarAcertos(10));
-        dispatch(PerguntasActions.salvarRespondidos(10));
+        dispatch(PerguntasActions.salvarAcertos(1 + qtdAcertos));
+        dispatch(PerguntasActions.salvarRespondidos(1));
         setModalVisible(!modalVisible); 
+       // insereRespostasCertas();
        // {(userDistrict)=>setUserDistrict(userDistrict)}
-        navigation.navigate('InitialScreen');      
+        navigation.navigate('Congratulations');      
     }
 
     const respostaErrada = () => {
-        dispatch(PerguntasActions.salvarRespondidos(10));
+        dispatch(PerguntasActions.salvarRespondidos(1));
         setModalVisible(!modalVisible);
-        navigation.navigate('InitialScreen');
-      //  navigation.navigate('InitialScreen');
+        insereRespostasCertas();
+       // navigation.navigate('InitialScreen');
+        navigation.navigate('Congratulations');
     }
 
     const insereRespostasCertas = () => {
+     // 'UPDATE INFORMATION SET respostasCertas=? ORDER BY student_id DESC LIMIT 1',
+     console.log("Entrou no banco" + qtdAcertos);
       db.transaction(function(tx) {
         tx.executeSql(
-          'INSERT INTO INFORMATION (respostasCertas) VALUES (?)',
+          'UPDATE INFORMATION SET respostasCertas=? WHERE student_id = (SELECT MAX(student_id) FROM INFORMATION)',
           [qtdAcertos],
           (tx, results) => {
             console.log('Results', results.rowsAffected);
             if(results.rowsAffected > 0){ 
-              console.log("Inseriu resposta");
+              console.log("Atualizou resposta");
               Alert.alert(
                 'Sucesso',
                 'Dado inserido com sucesso',
@@ -49,14 +55,10 @@ const PerguntaDez = ({navigation}) => {
                 { cancelable: false }
               );
             } else {alert('Cadastro falhou')};
-          }
+          }, console.log("IH RAPAZ")
         );
       });
     }
-
-    const qtdAcertos = useSelector((store) => store.perguntas.qtdAcertos);
-    console.log(qtdAcertos+"oiiiiiiiiiiiiiiii");
-    insereRespostasCertas();
 
     return(
         

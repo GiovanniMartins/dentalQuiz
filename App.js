@@ -57,17 +57,50 @@ export default function App(propos){
                   title: "",
                   headerShown: true,
                 }}/>
-          <Stack.Screen name="FirstQuestion" component={FirstQuestion}/>
-          <Stack.Screen name="SecondQuestion" component={SecondQuestion}/>
-          <Stack.Screen name="ThirdQuestion" component={ThirdQuestion}/>
-          <Stack.Screen name="FourthQuestion" component={FourthQuestion}/>
-          <Stack.Screen name="FifthQuestion" component={FifthQuestion}/>
-          <Stack.Screen name="SixthQuestion" component={SixthQuestion}/>
-          <Stack.Screen name="SeventhQuestion" component={SeventhQuestion}/>
-          <Stack.Screen name="EighthQuestion" component={EighthQuestion}/>
-          <Stack.Screen name="NinethQuestion" component={NinethQuestion}/>
-          <Stack.Screen name="TenthQuestion" component={TenthQuestion}/>
-          <Stack.Screen name="Congratulations" component={Congratulations}/>
+          <Stack.Screen name="FirstQuestion" component={FirstQuestion} optinos={{
+                  title: "",
+                  headerShown: true,
+          }}/>
+          <Stack.Screen name="SecondQuestion" component={SecondQuestion} optinos={{
+                  title: "",
+                  headerShown: true,
+          }}/>
+          <Stack.Screen name="ThirdQuestion" component={ThirdQuestion} optinos={{
+                  title: "",
+                  headerShown: true,
+          }}/>
+          <Stack.Screen name="FourthQuestion" component={FourthQuestion} optinos={{
+                  title: "",
+                  headerShown: true,
+          }}/>
+          <Stack.Screen name="FifthQuestion" component={FifthQuestion} optinos={{
+                  title: "",
+                  headerShown: true,
+          }}/>
+          <Stack.Screen name="SixthQuestion" component={SixthQuestion} optinos={{
+                  title: "",
+                  headerShown: true,
+          }}/>
+          <Stack.Screen name="SeventhQuestion" component={SeventhQuestion} optinos={{
+                  title: "",
+                  headerShown: true,
+          }}/>
+          <Stack.Screen name="EighthQuestion" component={EighthQuestion} optinos={{
+                  title: "",
+                  headerShown: true,
+          }}/>
+          <Stack.Screen name="NinethQuestion" component={NinethQuestion} optinos={{
+                  title: "",
+                  headerShown: true,
+          }}/>
+          <Stack.Screen name="TenthQuestion" component={TenthQuestion} optinos={{
+                  title: "",
+                  headerShown: true,
+          }}/>
+          <Stack.Screen name="Congratulations" component={Congratulations} optinos={{
+                  title: "",
+                  headerShown: true,
+          }}/>
           <Stack.Screen name="AvaliationOne" component={AvaliationOne}/>
           <Stack.Screen name="AvaliationTwo" component={AvaliationTwo}/>
           <Stack.Screen name="AvaliationThree" component={AvaliationThree}/>

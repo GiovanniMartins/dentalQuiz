@@ -24,8 +24,11 @@ const PerguntaUm = ({navigation}) => {
     //     }
     // },[respondidoState])
 
+    const qtdAcertos = useSelector((store) => store.perguntas.qtdAcertos);
+    console.log(qtdAcertos + " Acertos");
+
     const respostaCerta = () => {
-        dispatch(PerguntasActions.salvarAcertos(1));
+        dispatch(PerguntasActions.salvarAcertos(1 + qtdAcertos));
         dispatch(PerguntasActions.salvarRespondidos(1));
         setModalVisible(!modalVisible);        
         navigation.navigate('SecondQuestion');
@@ -35,11 +38,7 @@ const PerguntaUm = ({navigation}) => {
         dispatch(PerguntasActions.salvarRespondidos(1));
         setModalVisible(!modalVisible);
         navigation.navigate('SecondQuestion');
-    }
-
-    const qtdAcertos = useSelector((store) => store.perguntas.qtdAcertos);
-    console.log(qtdAcertos + "teste");
-    
+    }    
 
     return (        
         <View  style={styles.background}>

@@ -9,15 +9,17 @@ const PerguntaCinco = ({navigation}) => {
     const [modalVisibleWrong, setModalVisibleWrong] = useState(false);
     const dispatch = useDispatch()
 
+    const qtdAcertos = useSelector((store) => store.perguntas.qtdAcertos);
+
     const respostaCerta = () => {
-        dispatch(PerguntasActions.salvarAcertos(5));
-        dispatch(PerguntasActions.salvarRespondidos(5));
+        dispatch(PerguntasActions.salvarAcertos(1 + qtdAcertos));
+        dispatch(PerguntasActions.salvarRespondidos(1));
         setModalVisible(!modalVisible);        
         navigation.navigate('SixthQuestion');
     }
     
     const respostaErrada = () => {
-        dispatch(PerguntasActions.salvarRespondidos(5));
+        dispatch(PerguntasActions.salvarRespondidos(1));
         setModalVisible(!modalVisible);
         navigation.navigate('SixthQuestion');
     }

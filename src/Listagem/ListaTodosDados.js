@@ -6,7 +6,7 @@ import React,{useState, useEffect} from 'react';
 const  db = SQLite.openDatabase('Dados.db');
 
 export default function ListaTodosDados(){  
-
+//'SELECT * FROM INFORMATION order by student_id desc limit 1'
         let [flatListItems, setFlatListItems] = useState([]);
         useEffect(() => {
             db.transaction((tx) => {

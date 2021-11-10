@@ -23,15 +23,17 @@ const PerguntaDois = ({navigation}) => {
         }
     },[])
 
+    const qtdAcertos = useSelector((store) => store.perguntas.qtdAcertos);
+
     const respostaCerta = () => {
-        dispatch(PerguntasActions.salvarAcertos(2));
-        dispatch(PerguntasActions.salvarRespondidos(2));
+        dispatch(PerguntasActions.salvarAcertos(qtdAcertos + 1));
+        dispatch(PerguntasActions.salvarRespondidos(1));
         setModalVisible(!modalVisible);        
         navigation.navigate('ThirdQuestion');      
     }
 
     const respostaErrada = () => {
-        dispatch(PerguntasActions.salvarRespondidos(2));
+        dispatch(PerguntasActions.salvarRespondidos(1));
         setModalVisible(!modalVisible);
         navigation.navigate('ThirdQuestion');
     }
