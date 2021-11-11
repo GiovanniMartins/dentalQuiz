@@ -17,6 +17,7 @@ export default function ListaTodosDados(){
                         var temp = [];
                         for (let i = 0; i < results.rows.length; ++i){
                             temp.push(results.rows.item(i));
+                            console.log(results.rows.item(i));
                         }
                         setFlatListItems(temp); 
                     });
