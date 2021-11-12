@@ -8,22 +8,45 @@ const  db = SQLite.openDatabase('Dados.db');
 export default function ListaPorEnsino(){
     let [inputEnsino, setInputEnsino] = useState('');
     let [retornoEnsino, setRetornoEnsino] = useState({});
+    var [quantidadeRegistros, setQuantidadeRegistros] = useState(0);// Inicializei com 1 pois o contatador de questões estava dando 2 quando tinham 3 registros
+    let [quantidadeAcertos, setQuantidadeAcertos] = useState(0);
+    let countAcertos=0;
+    let countRegistros=0;
 
     let searchEnsino = () => {
         console.log('Ensino buscado: ', inputEnsino);
-        if(inputEnsino != "Público" || inputEnsino != "Particular" ){
-            alert('A forma correta de escrita é "Públco" ou "Particular"');
-            return;
-        }
-        setRetornoBairro({});
+      
         db.transaction((tx) => {
-            tx.executeSql('SELECT * FROM INFORMATION  where ensino = ?', [inputEnsino], 
-            (tx, results) => {
+            tx.executeSql('SELECT * FROM information',[inputEnsino],   
+             (tx, results) => {
+                console.log("Ensino " + inputEnsino);
+                var temp = [];
+                
+                for(let i = 0; i < results.rows.length; ++i){
+                    temp.push(results.rows.item(i));
+                    countRegistros++;
+                    console.log("Quantidade" + countRegistros);
+                    console.log("quantidade de acertos " + results.rows.item(i).respostasCertas);
+                    countAcertos+= Number(results.rows.item(i).respostasCertas);
+                    console.log("ContadorAcertos: " + countAcertos);
+                    
+                }
+                setQuantidadeAcertos(countAcertos);
+                console.log("Quantidade de acertos: " + countAcertos);
+
                 var len = results.rows.length;
                 console.log('len',len);
-                console.log('Busca por Ensino');
+                console.log('Busca por intervalo de idade');
                 if(len > 0) {
-                    setRetornoEnsino(results.rows.item(0));
+                    setRetornoPorIdade(results.rows.item(0));
+                    countRegistros = countRegistros * 10;
+                    console.log("Quantidade de registro" + countRegistros);
+                    console.log("Quantidade de acerto " + countAcertos);
+                    console.log("Multiplicacao " + countAcertos);
+                    countAcertos = countAcertos * 100;
+                    setQuantidadeAcertos(countAcertos / countRegistros);
+                    console.log("Resultado final " +  countAcertos);
+                    setQuantidadeRegistros(countRegistros);
                 } else {
                     alert('Usuário não encontrado!');
                 }
@@ -37,7 +60,7 @@ export default function ListaPorEnsino(){
                     <View style={{ flex:1 }}>
                         <Text text="Filtro de Usuário"/>
                             <TextInput   placeholder="Entre com o tipo de ensino para busca"
-                                         onChangeText={(inputEnsino)=>setInputEnsino(inputEnsino)}
+                                         onChangeText={(texto)=>setInputEnsino(texto)}
                                          style={{ padding:10 }}
                             />
                             <Button title="Buscar Bairro" onPress={searchEnsino}/>
@@ -46,7 +69,8 @@ export default function ListaPorEnsino(){
                                 marginRight:35,
                                 marginTop:10
                             }}>
-                                <Text>Percentual dos acertos no bairro selecionado: {retornoEnsino.bairro}</Text>
+                                <Text>Percentual dos acertos na idade selecionado: {quantidadeAcertos.toFixed(2)}</Text>
+                                <Text>Quantidade de questões: {quantidadeRegistros}</Text>
                             </View>
                     </View>
                 </View>
