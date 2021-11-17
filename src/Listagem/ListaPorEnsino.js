@@ -17,12 +17,13 @@ export default function ListaPorEnsino(){
         console.log('Ensino buscado: ', inputEnsino);
       
         db.transaction((tx) => {
-            tx.executeSql('SELECT * FROM information',[inputEnsino],   
+            tx.executeSql('SELECT * FROM information where ensino = ?', [inputEnsino],  
              (tx, results) => {
                 console.log("Ensino " + inputEnsino);
                 var temp = [];
                 
                 for(let i = 0; i < results.rows.length; ++i){
+                    console.log(results.rows.item(i));
                     temp.push(results.rows.item(i));
                     countRegistros++;
                     console.log("Quantidade" + countRegistros);
@@ -36,13 +37,13 @@ export default function ListaPorEnsino(){
 
                 var len = results.rows.length;
                 console.log('len',len);
-                console.log('Busca por intervalo de idade');
+                console.log('Busca por Ensino');
                 if(len > 0) {
-                    setRetornoPorIdade(results.rows.item(0));
+                    setRetornoEnsino(results.rows.item(0));
                     countRegistros = countRegistros * 10;
-                    console.log("Quantidade de registro" + countRegistros);
-                    console.log("Quantidade de acerto " + countAcertos);
-                    console.log("Multiplicacao " + countAcertos);
+                    console.log("Quantidade de registro: " + countRegistros);
+                    console.log("Quantidade de acerto: " + countAcertos);
+                    console.log("Multiplicacao: " + countAcertos);
                     countAcertos = countAcertos * 100;
                     setQuantidadeAcertos(countAcertos / countRegistros);
                     console.log("Resultado final " +  countAcertos);
@@ -63,7 +64,7 @@ export default function ListaPorEnsino(){
                                          onChangeText={(texto)=>setInputEnsino(texto)}
                                          style={{ padding:10 }}
                             />
-                            <Button title="Buscar Bairro" onPress={searchEnsino}/>
+                            <Button title="Buscar Ensino" onPress={searchEnsino}/>
                             <View style={{
                                 marginLeft:35,
                                 marginRight:35,
