@@ -3,6 +3,7 @@ import { View, Alert, Modal,KeyboardAvoidingView, Image, TextInput, TouchableOpa
 import React, {useEffect, useState} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Creators as PerguntasActions } from '../store/ducks/perguntas';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 
 const PergunaTres = ({navigation}) => {
@@ -26,37 +27,35 @@ const PergunaTres = ({navigation}) => {
     }
 
     return(
-        
         <View  style={styles.background}>
             <View>
                 <View>
                     <Text style={styles.backgroundQuestion}>Para que serve o aparelho dental?</Text>
                 </View>
             </View>
+            <View>
+          <TouchableOpacity style={styles.button} onPress={() => setModalVisibleWrong(true)}>
+            <Text style={styles.buttonText}>
+              Limpar o dente
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.button} onPress={() => setModalVisibleWrong(true)}>
+            <Text style={styles.buttonText}>
+              Deixar bonito
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.button} onPress={() => setModalVisible(true)}>
+            <Text style={styles.buttonText}>
+              Corrigir a posição dos dentes
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.button} onPress={() => setModalVisibleWrong(true)}>
+            <Text style={styles.buttonText}>
+              Listar por Ensino
+            </Text>
+          </TouchableOpacity>
+        </View>
             
-            <View style ={styles.backView}>
-                <TouchableOpacity style = {styles.backgroundTouchableOpacity} onPress={() => setModalVisible(true)}>
-                    <Image source={require('../../assets/a13.png')}
-                        style={{ width: 130, height: 130}}/> 
-                        
-                </TouchableOpacity>
-
-                <TouchableOpacity style = {styles.backgroundTouchableOpacity2} onPress={() => setModalVisibleWrong(true)}>
-                    <Image source={require('../../assets/dentinhoFeliz.png')}
-                        style={{ width: 130, height: 130 }}/> 
-                </TouchableOpacity>
-            </View>
-            <View style ={styles.backView2}>
-                <TouchableOpacity style = {styles.backgroundTouchableOpacity} onPress={() => setModalVisibleWrong(true)}>
-                    <Image source={require('../../assets/dentinhoFeliz.png')}
-                        style={{ width: 130, height: 130}}/> 
-                </TouchableOpacity>
-
-                <TouchableOpacity style = {styles.backgroundTouchableOpacity2} onPress={() => setModalVisibleWrong(true)}>
-                    <Image source={require('../../assets/dentinhoFeliz.png')}
-                        style={{ width: 130, height: 130 }}/> 
-                </TouchableOpacity>
-            </View>
             <Modal  
                     animationType="slide"
                     transparent={true}
@@ -68,8 +67,8 @@ const PergunaTres = ({navigation}) => {
                     <View style={styles.modalView}>
                         <Image source={require('../../assets/dentinhoFeliz.png')} style={styles.imageModal} /> 
                         <Text style={styles.modalText}>Acertou, jovem!</Text>
-                                 <TouchableOpacity style={{ ...styles.openButton, backgroundColor: "#2196F3" }} onPress={()=>{respostaCerta()}} >
-                                 <Text style={styles.textStyle}>Hide Modal</Text>
+                                <TouchableOpacity style={{ ...styles.openButton, backgroundColor: "#2196F3" }} onPress={()=>{respostaCerta()}} >
+                                <Text style={styles.textStyle}>Hide Modal</Text>
                             </TouchableOpacity>
                     </View>
                 </View>       
@@ -85,14 +84,14 @@ const PergunaTres = ({navigation}) => {
                     <View style={styles.modalView}>
                         <Image source={require('../../assets/dentinhoFeliz.png')} style={styles.imageModal} /> 
                         <Text style={styles.modalText}>Errou, jovem! Ele serve para corrigir falhas na dentição</Text>
-                                 <TouchableOpacity style={{ ...styles.openButton, backgroundColor: "#2196F3" }} onPress={() => {respostaErrada()}} >
-                                 <Text style={styles.textStyle}>Hide Modal</Text>
+                                <TouchableOpacity style={{ ...styles.openButton, backgroundColor: "#2196F3" }} onPress={() => {respostaErrada()}} >
+                                <Text style={styles.textStyle}>Hide Modal</Text>
                             </TouchableOpacity>
                     </View>
                 </View>       
             </Modal>
         </View>
-       )
+    )
 }
 
 export default PergunaTres
@@ -187,6 +186,23 @@ const styles = StyleSheet.create({
         alignItems: "center",
         width: 130, 
         height: 130 
+    },
+    button: {
+        marginTop: 10,
+        height: 60,
+        backgroundColor: 'blue',
+        borderRadius: 10,
+        paddingHorizontal: 24,
+        fontSize: 16,
+        alignItems: 'center',
+        justifyContent: 'center',
+        elevation: 20,
+        shadowOpacity: 20,
+        shadowColor: '#458070' 
+    },
+    buttonText: {
+        color: '#fff',
+        fontWeight: 'bold'
     }
 
 })

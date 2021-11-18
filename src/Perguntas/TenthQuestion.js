@@ -65,20 +65,22 @@ const PerguntaDez = ({navigation}) => {
         <View  style={styles.background}>
             <View>
                 <View>
-                    <Text style={styles.backgroundQuestion}>Sua escola tem orientação sobre cuidado com os dentes?</Text>
+                    <Text style={styles.backgroundQuestion}>Você acha que a escola deveria ter orientação sobre escovação de dentes?</Text>
                 </View>
             </View>
             
             <View style ={styles.backView}>
-                <TouchableOpacity style = {styles.backgroundTouchableOpacity} onPress={() => {setModalVisible(true);}}>
-                    <Image source={require('../../assets/certo.png')}
-                        style={{ width: 130, height: 130}}/> 
-                        
+                <TouchableOpacity style={styles.button} onPress={() => setModalVisible(true)}>
+                    <Text style={styles.buttonText}>
+                        SIM
+                    </Text>
                 </TouchableOpacity>
-
-                <TouchableOpacity style = {styles.backgroundTouchableOpacity2} onPress={() => {setModalVisibleWrong(true);}}>
-                    <Image source={require('../../assets/errado.png')}
-                        style={{ width: 130, height: 130 }}/> 
+            </View>
+            <View>
+                <TouchableOpacity style={styles.button} onPress={() => setModalVisibleWrong(true)}>
+                    <Text style={styles.buttonText}>
+                        NÃO
+                    </Text>
                 </TouchableOpacity>
             </View>
             <Modal  

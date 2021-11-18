@@ -34,15 +34,17 @@ const PerguntaQuatro = ({navigation}) => {
             </View>
             
             <View style ={styles.backView}>
-                <TouchableOpacity style = {styles.backgroundTouchableOpacity} onPress={() => {setModalVisible(true);}}>
-                    <Image source={require('../../assets/certo.png')}
-                        style={{ width: 130, height: 130}}/> 
-                        
+                <TouchableOpacity style={styles.button} onPress={() => setModalVisible(true)}>
+                    <Text style={styles.buttonText}>
+                        SIM
+                    </Text>
                 </TouchableOpacity>
-
-                <TouchableOpacity style = {styles.backgroundTouchableOpacity2} onPress={() => {setModalVisibleWrong(true);}}>
-                    <Image source={require('../../assets/errado.png')}
-                        style={{ width: 130, height: 130 }}/> 
+            </View>
+            <View>
+                <TouchableOpacity style={styles.button} onPress={() => setModalVisibleWrong(true)}>
+                    <Text style={styles.buttonText}>
+                        NÃO
+                    </Text>
                 </TouchableOpacity>
             </View>
             <Modal  
@@ -176,6 +178,23 @@ const styles = StyleSheet.create({
         alignItems: "center",
         width: 130, 
         height: 130 
+    },
+    button: {
+        marginTop: 10,
+        height: 60,
+        backgroundColor: 'blue',
+        borderRadius: 10,
+        paddingHorizontal: 24,
+        fontSize: 16,
+        alignItems: 'center',
+        justifyContent: 'center',
+        elevation: 20,
+        shadowOpacity: 20,
+        shadowColor: '#458070' 
+    },
+    buttonText: {
+        color: '#fff',
+        fontWeight: 'bold'
     }
 
 })
