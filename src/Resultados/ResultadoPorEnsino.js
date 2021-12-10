@@ -7,12 +7,15 @@ import {
   Text,
   Button,
   TextInput,
+  TouchableOpacity
 } from 'react-native';
 import React, { useState, useEffect } from 'react';
+import { Searchbar, Divider, ActivityIndicator } from 'react-native-paper';
 const db = SQLite.openDatabase('Dados.db');
 
 export default function ResultadoPorEnsino() {
   let [inputEnsino, setInputEnsino] = useState('');
+  const [loading, setLoading] = useState(false);
   let [retornoEnsino, setRetornoEnsino] = useState({});
   var [quantidadeRegistros, setQuantidadeRegistros] = useState(0); // Inicializei com 1 pois o contatador de questões estava dando 2 quando tinham 3 registros
   let [quantidadeAcertos, setQuantidadeAcertos] = useState(0);
@@ -67,30 +70,77 @@ export default function ResultadoPorEnsino() {
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
-      <View style={{ flex: 1, backgroundColor: 'white' }}>
-        <View style={{ flex: 1 }}>
-          <Text text="Filtro de Usuário" />
-          <TextInput
-            placeholder="Entre com o tipo de ensino para busca"
+      <View 
+        style={{ 
+          flex: 1,
+          backgroundColor: 'white',
+          padding: 24,
+          paddingVertical: 100,
+        }}>
+        <Text style={styles.title}>Resultados por ensino: </Text>
+        <Searchbar
+            placeholder="Digite o tipo de ensino"
             onChangeText={(texto) => setInputEnsino(texto)}
+            value={inputEnsino}
             style={{ padding: 10 }}
-          />
-          <Button title="Buscar Ensino" onPress={searchEnsino} />
-          <View
-            style={{
-              marginLeft: 35,
-              marginRight: 35,
-              marginTop: 10,
-            }}
-          >
-            <Text>
-              Percentual dos acertos na idade selecionado:{' '}
-              {quantidadeAcertos.toFixed(2)}
+        />
+        <TouchableOpacity
+          title="Buscar Ensino"
+          onPress={searchEnsino}
+          style={styles.button}
+        >
+          {loading ? (
+            <ActivityIndicator animating={true} color={'#FFFFFF'} />
+          ) : (
+            <Text style={styles.buttonText}>Buscar</Text>
+          )}
+        </TouchableOpacity>
+        <Divider />
+          <View style={styles.listaArea}>
+            <Text style={styles.tituloResultados}>
+              Percentual dos acertos no ensino selecionado:{' '}
+              {quantidadeAcertos.toFixed(2)}%
             </Text>
-            <Text>Quantidade de questões: {quantidadeRegistros}</Text>
+            <Text style={styles.tituloResultados}>
+              Quantidade de questões: {quantidadeRegistros}
+            </Text>
           </View>
-        </View>
+        <Divider />
       </View>
     </SafeAreaView>
   );
 }
+
+const styles = StyleSheet.create({
+  title: {
+    fontSize: 25,
+    color: '#3A5D99',
+    fontWeight: 'bold',
+    paddingBottom: 30,
+  },
+  button: {
+    marginTop: 40,
+    marginBottom: 40,
+    height: 60,
+    backgroundColor: '#3A5D99',
+    borderRadius: 10,
+    paddingHorizontal: 24,
+    fontSize: 16,
+    alignItems: 'center',
+    justifyContent: 'center',
+    elevation: 20,
+    shadowOpacity: 20,
+  },
+  buttonText: {
+    color: '#fff',
+    fontWeight: 'bold',
+  },
+  listaArea: {
+    marginVertical: 20,
+  },
+  tituloResultados: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: '#3A5D99',
+  },
+});

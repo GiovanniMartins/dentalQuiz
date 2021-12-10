@@ -97,7 +97,7 @@ export default function ResultadoPorBairro() {
         <Divider />
         <View style={styles.listaArea}>
           <Text style={styles.tituloResultados}>
-            Percentual dos acertos na idade selecionado:{' '}
+            Percentual dos acertos no bairro selecionado:{' '}
             {quantidadeAcertos.toFixed(2)}%
           </Text>
           <Text style={styles.tituloResultados}>

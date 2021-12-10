@@ -63,7 +63,9 @@ const PerguntaUm = ({ navigation }) => {
       </Text>
 
       <View style={styles.backView}>
-        <TouchableOpacity onPress={() => setModalVisible(true)}>
+        <TouchableOpacity 
+          style={styles.backgroundTouchableOpacity}
+          onPress={() => setModalVisible(true)}>
           <Image
             source={require('../../assets/1.png')}
             style={{ width: 130, height: 130 }}

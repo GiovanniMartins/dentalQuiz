@@ -51,6 +51,13 @@ export default function InitialScreen({ navigation }) {
       alert('Por favor, insira todos os dados para prosseguir');
       return;
     }
+    if(typeOfSchool == "Público" || typeOfSchool == "público") {
+      alert('Por favor, insira o tipo de ensino sem acento');
+      return;
+    }
+    console.log(userDistrict);
+    userDistrict = userDistrict.normalize("NFD");
+    console.log(userDistrict);
     db.transaction(function (tx) {
       tx.executeSql(
         'INSERT INTO INFORMATION (idade, bairro, ensino) VALUES (?,?,?)',

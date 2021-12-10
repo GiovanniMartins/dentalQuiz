@@ -52,19 +52,16 @@ const Congratulations =({ navigation }) => {
        return(
         
         <View  style={styles.background}>
-            <View>
-                <View>
-                    <Text style={styles.backgroundQuestion}>Parabéns você finalizou nossa avaliação, devolva o aparelho para o profissional</Text>
-                </View>
-            </View>
+            <Text style={styles.backgroundQuestion}>Parabéns você finalizou nossa avaliação, devolva o aparelho para o profissional</Text>
+          
             
             <View style={styles.containerLogo}>
                 
                     <Animated.Image
-                        source={require('../../assets/dentinhoFeliz.png')}
+                        source={require('../../assets/denteImage.png')}
                         style={{ width: 127, height:127 }}
                     /> 
-                    <Button style={styles.btnSubmit}
+                    <Button style={styles.button}
                             title="Seguir"
                             onPress={()=> insereRespostasCertas()}
                     />
@@ -74,104 +71,105 @@ const Congratulations =({ navigation }) => {
        )
     }
 export default Congratulations
-const styles = StyleSheet.create({
-    background:{
-      flex:1,
-      alignItems: 'center',
-      justifyContent: 'center',
-      backgroundColor: '#8bf0d5'
-    },
-    backgroundQuestion:{
-        backgroundColor: '#84a5c4',
-        justifyContent: 'center',
-        alignItems: 'center',
-        marginTop:-130,
-        height: 90,
-        borderRadius: 20,
-        color: '#222',
-        fontSize:  25
-     
-    },
-    backgroundTouchableOpacity:{
-        justifyContent: 'center',
-        borderWidth : 1,
-        height : 170,
-        flexDirection: 'column',
-        justifyContent: 'space-between',
-        alignSelf: 'flex-start',
-        marginRight: '10%',
-       
-        height : 130,
-        width : 130,
-       
-    },
-    backgroundTouchableOpacity2:{
-        justifyContent: 'center',
-        borderWidth : 1,
-        height : 130,
-        width : 130,
-        flexDirection: 'column',
-        justifyContent: 'space-between',
-        alignSelf: 'flex-start',
-     
-    },
-    backView:{
-        flexDirection: 'row',
-        flexWrap: 'wrap',
-        marginTop:50,
-         
-    },
-    backView2:{
-        flexDirection: 'row',
-        flexWrap: 'wrap',
-        marginTop:20,
-      
-    },
-    modalView:{
-        marginTop: 150,
-        marginLeft: 10,
-        marginRight: 10,
-        backgroundColor: "white",
-        borderRadius: 20,
-        padding: 35,
-        alignItems: "center",
-        shadowColor: "#000",
-            shadowOffset: {
-            width: 0,
-            height: 2
-        },
-        shadowOpacity: 0.25,
-        shadowRadius: 3.84,
-        elevation: 5
-    },
-    modalText: {
-        marginBottom: 15,
-        textAlign: "center"
-    },
-    textStyle: {
-        color: "white",
-        fontWeight: "bold",
-        textAlign: "center"
-    },
-    openButton: {
-        backgroundColor: "#F194FF",
-        borderRadius: 20,
-        padding: 10,
-        elevation: 2
-      },
-    imageModal: {
-        justifyContent: "center",
-        alignItems: "center",
-        width: 130, 
-        height: 130 
-    },
-    btnSubmit:{
-        backgroundColor: '#8bf0d5',
-        width: '90%',
-        height: 45,
-        alignItems: 'center',
-        justifyContent: 'center',
-        marginBottom: 15
-      }
 
-})
+const styles = StyleSheet.create({
+  background: {
+    flex: 1,
+    paddingHorizontal: 24,
+    paddingTop: 100,
+    backgroundColor: '#6E9AE6',
+    alignItems: 'center',
+  },
+  title: {
+    fontSize: 25,
+    color: '#ffffff',
+    fontWeight: 'bold',
+    paddingBottom: 30,
+  },
+  backgroundQuestion: {
+    color: '#ffffff',
+    fontSize: 24,
+    textAlign: 'center',
+  },
+  backgroundTouchableOpacity: {
+    backgroundColor: '#ffffff',
+    borderRadius: 25,
+    borderWidth: 1,
+  },
+  backView: {
+    width: '90%',
+    alignSelf: 'center',
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-between',
+    marginTop: 50,
+  },
+  modalView: {
+    marginTop: 150,
+    marginLeft: 10,
+    marginRight: 10,
+    backgroundColor: 'white',
+    borderRadius: 20,
+    padding: 35,
+    alignItems: 'center',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
+  },
+  modalText: {
+    marginVertical: 15,
+    textAlign: 'center',
+    fontSize: 22,
+  },
+  textStyle: {
+    color: 'white',
+    fontWeight: 'bold',
+    textAlign: 'center',
+  },
+  openButton: {
+    width: '80%',
+    backgroundColor: '#3A5D99',
+    borderRadius: 20,
+    padding: 20,
+    marginTop: 10,
+    elevation: 2,
+  },
+  imageModal: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: 130,
+    height: 130,
+  },
+  buttonText: {
+    color: '#fff',
+    fontWeight: 'bold',
+  },
+  background: {
+    flex: 1,
+    paddingHorizontal: 24,
+    justifyContent: 'center',
+    backgroundColor: '#6E9AE6',
+  },
+  button: {
+    marginTop: 25,
+    height: 60,
+    backgroundColor: '#3A5D99',
+    borderRadius: 10,
+    paddingHorizontal: 24,
+    fontSize: 16,
+    alignItems: 'center',
+    justifyContent: 'center',
+    elevation: 20,
+    shadowOpacity: 20,
+  },
+  buttonText: {
+    color: '#fff',
+    fontWeight: 'bold',
+  },
+});
+

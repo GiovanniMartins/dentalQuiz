@@ -7,13 +7,17 @@ import {
   Text,
   Button,
   TextInput,
+  TouchableOpacity
 } from 'react-native';
 import React, { useState, useEffect } from 'react';
+import { Searchbar, Divider, ActivityIndicator } from 'react-native-paper';
+//import { Searchbar } from 'react-native-paper';
 const db = SQLite.openDatabase('Dados.db');
 
 export default function ResultadoPorIdade() {
   let [inputIdadeUm, setInputIdadeUm] = useState('');
   let [inputIdadeDois, setInputIdadeDois] = useState('');
+  const [loading, setLoading] = useState(false);
   let [retornoPorIdade, setRetornoPorIdade] = useState({});
   var [quantidadeRegistros, setQuantidadeRegistros] = useState(0); // Inicializei com 1 pois o contatador de questões estava dando 2 quando tinham 3 registros
   let [quantidadeAcertos, setQuantidadeAcertos] = useState(0);
@@ -76,30 +80,80 @@ export default function ResultadoPorIdade() {
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
-      <View style={{ flex: 1, backgroundColor: 'white' }}>
-        <View style={{ flex: 1 }}>
-          <Text text="Filtro de Usuário" />
-          <TextInput
-            placeholder="Digite a primeira idade para busca"
-            onChangeText={(texto) => setInputIdadeUm(texto)}
-            style={{ padding: 10 }}
-          />
-          <Button title="Buscar por Idade" onPress={searchIdade} />
-          <View
-            style={{
-              marginLeft: 35,
-              marginRight: 35,
-              marginTop: 10,
-            }}
-          >
-            <Text>
-              Percentual dos acertos na idade selecionado:{' '}
-              {quantidadeAcertos.toFixed(2)}
-            </Text>
-            <Text>Quantidade de questões: {quantidadeRegistros}</Text>
-          </View>
+      <View 
+        style={{ 
+          flex: 1, 
+          backgroundColor: 'white',
+          padding: 24,
+          paddingVertical: 100 
+        }}
+      >
+        <Text style={styles.title}>Resultados por idade: </Text>
+        <Searchbar
+          placeholder="Digite a primeira idade"
+          onChangeText={(texto) => setInputIdadeUm(texto)}
+          value={inputIdadeUm}
+          style={{ padding: 10 }}
+        />
+
+        <TouchableOpacity
+          title="Buscar Bairro"
+          onPress={searchIdade}
+          style={styles.button}
+        >
+          {loading ? (
+            <ActivityIndicator animating={true} color={'#FFFFFF'} />
+          ) : (
+            <Text style={styles.buttonText}>Buscar</Text>
+          )}
+        </TouchableOpacity>
+        <Divider />
+        <View style={styles.listaArea}>
+          <Text style={styles.tituloResultados}>
+            Percentual dos acertos na idade selecionada:{' '}
+            {quantidadeAcertos.toFixed(2)}%
+          </Text>
+          <Text style={styles.tituloResultados}>
+            Quantidade de questões: {quantidadeRegistros}
+          </Text>
         </View>
+        <Divider />
       </View>
     </SafeAreaView>
   );
 }
+
+const styles = StyleSheet.create({
+  title: {
+    fontSize: 25,
+    color: '#3A5D99',
+    fontWeight: 'bold',
+    paddingBottom: 30,
+  },
+  button: {
+    marginTop: 40,
+    marginBottom: 40,
+    height: 60,
+    backgroundColor: '#3A5D99',
+    borderRadius: 10,
+    paddingHorizontal: 24,
+    fontSize: 16,
+    alignItems: 'center',
+    justifyContent: 'center',
+    elevation: 20,
+    shadowOpacity: 20,
+  },
+  buttonText: {
+    color: '#fff',
+    fontWeight: 'bold',
+  },
+  listaArea: {
+    marginVertical: 20,
+  },
+  tituloResultados: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: '#3A5D99',
+  },
+});
+

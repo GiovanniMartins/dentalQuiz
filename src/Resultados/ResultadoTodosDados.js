@@ -33,11 +33,11 @@ export default function ResultadoTodosDados() {
         key={item.student_id}
         style={{ backgroundColor: 'white', padding: 20 }}
       >
-        <Text>Id: {item.student_id}</Text>
-        <Text>Idade: {item.idade}</Text>
-        <Text>Bairro: {item.bairro}</Text>
-        <Text>TipoEnsino: {item.ensino}</Text>
-        <Text> Perguntas: {item.respostasCertas}</Text>
+        <Text style={styles.tituloResultados}>Id: {item.student_id}</Text>
+        <Text style={styles.tituloResultados}>Idade: {item.idade}</Text>
+        <Text style={styles.tituloResultados}>Bairro: {item.bairro}</Text>
+        <Text style={styles.tituloResultados}>TipoEnsino: {item.ensino}</Text>
+        <Text style={styles.tituloResultados}> Perguntas: {item.respostasCertas}</Text>
       </View>
     );
   };
@@ -58,16 +58,38 @@ export default function ResultadoTodosDados() {
       </View>
     </SafeAreaView>
   );
-
-  const styles = StyleSheet.create({
-    textheader: {
-      color: '#111',
-      fontSize: 12,
-      fontWeight: '700',
-    },
-    textbottom: {
-      color: '#111',
-      fontSize: 18,
-    },
-  });
 }
+const styles = StyleSheet.create({
+  title: {
+    fontSize: 25,
+    color: '#3A5D99',
+    fontWeight: 'bold',
+    paddingBottom: 30,
+  },
+  button: {
+    marginTop: 40,
+    marginBottom: 40,
+    height: 60,
+    backgroundColor: '#3A5D99',
+    borderRadius: 10,
+    paddingHorizontal: 24,
+    fontSize: 16,
+    alignItems: 'center',
+    justifyContent: 'center',
+    elevation: 20,
+    shadowOpacity: 20,
+  },
+  buttonText: {
+    color: '#fff',
+    fontWeight: 'bold',
+  },
+  listaArea: {
+    marginVertical: 20,
+  },
+  tituloResultados: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: '#3A5D99',
+  },
+});
+
